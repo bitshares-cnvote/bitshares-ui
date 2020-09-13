@@ -209,7 +209,9 @@ class CreateAccount extends React.Component {
         if (WalletDb.getWallet()) {
             this.createAccount(account_name);
         } else {
-            let password = this.refs.password.value();
+            let password = this.refs.password.state.password;
+            // REMARK: 原来用value()获取密码有问题, 提示找不到 value()
+            // let password = this.refs.password.value();
             this.createWallet(password).then(() =>
                 this.createAccount(account_name)
             );
